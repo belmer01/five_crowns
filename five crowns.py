@@ -19,12 +19,18 @@ if game_type == 'single play':
     rounds = range(3,14)
 
     # ask each player their score after each round and append to dict
+    # also list running score after each round
     for round in rounds:
         for player in players:
             score = (input(f"{player.title()}'s round {round} score?  "))
             while score.isdigit() == False:
                 score = (input(f"{player.title()}'s round {round} score?  "))
             players[player].append(int(score))
+      
+        print(f"\nScores after round {round}")
+        for player, score in players.items():
+            print(f"{player.title()}: {sum(score)}")
+        print()
   
     # print out the scores for each round
     print()
@@ -36,5 +42,20 @@ if game_type == 'single play':
         print(f"\n{player.title()}'s final score is {sum(score)}")
 
     # Announce the winner
+    scores = []
+    for player, score in players.items():
+        scores.append(sum(score)) 
+    
+    scores.sort()
+    score_spread = scores[1] - scores[0]
+    
     winner=min(players, key=lambda p:sum(players[p]))
-    print(f"\nThe winner is {winner.title()}!")
+   
+    if score_spread == 0:
+        print()
+    elif score_spread == 1:
+        print(f"\nThe winner is {winner.title()} by {score_spread} point!")
+    else:
+        print(f"\nThe winner is {winner.title()} by {score_spread} points!")
+
+    print()

@@ -1,11 +1,9 @@
 # The app will have 2 choices when launching:
 # ongoing competition or single play
 
-from five_crowns_functions import *
+from functions import *
 
 game_type = input("ongoing competition or single play?  ")
-
-
 
 if game_type == 'single play':
     people()

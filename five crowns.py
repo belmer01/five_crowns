@@ -1,9 +1,9 @@
 # The app will have 2 choices when launching:
 # ongoing competition or single play
 
-from functions import *
-
 game_type = input("ongoing competition or single play?  ")
+
+from functions import *
 
 if game_type == 'single play':
     people()

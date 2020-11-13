@@ -1,13 +1,21 @@
 ## Functions & variables ##
 
+players = {}
+rounds = range(3,14)
+users = ""
+
+# capture number of users
+def people():
+    users = (input("how many players? "))
+    while not users.isdigit():
+        users = (input("how many players? "))
+    return int(users)
+
 # capture each player's name
 def player_name():
     for person in range(users):
         name = input("player's name?  ")
         players[name] = []
-
-players = {}
-rounds = range(3,14)
 
 # capture player scores
 def scores():
@@ -59,11 +67,8 @@ def winner():
 game_type = input("ongoing competition or single play?  ")
 
 if game_type == 'single play':
-    users = (input("how many players? "))
-    while not users.isdigit():
-        users = (input("how many players? "))
-    users = int(users)
-    
+
+    users = people()   
     player_name()
     scores()
     round_scores()
@@ -78,7 +83,7 @@ if game_type == 'ongoing competition':
 
         users = (input("how many players? "))
         while not users.isdigit():
-        users = (input("how many players? "))
+            users = (input("how many players? "))
         users = int(users)
 
         player_name()

@@ -69,3 +69,21 @@ if game_type == 'single play':
     round_scores()
     final_scores()
     winner()
+
+if game_type == 'ongoing competition':
+    group = input('new group or existing group? ')
+
+    if group == 'new group':
+        group_name = input('name the new group')
+
+        users = (input("how many players? "))
+        while not users.isdigit():
+        users = (input("how many players? "))
+        users = int(users)
+
+        player_name()
+        scores()
+        round_scores()
+        final_scores()
+        winner()
+

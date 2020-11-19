@@ -1,25 +1,25 @@
 ## Functions & variables ##
-
 players = {} 
 rounds = range(3,14)
 users = ""
 champ = ""
+import json
 
-# capture number of users
 def people():
+    """capture the number of players"""
     users = (input("how many players? "))
     while not users.isdigit():
         users = (input("how many players? "))
     return int(users)
 
-# capture each player's name
 def player_name():
+    """capture each player's name"""
     for person in range(users):
         name = input("player's name?  ")
         players[name] = []
 
-# capture player scores
 def scores():
+    """capture players' scores"""
     for round in rounds:
         for player in players:
             score = (input(f"{player.title()}'s round {round} score?  "))
@@ -32,18 +32,18 @@ def scores():
             print(f"{player.title()}: {sum(score)}")
         print()
 
-# print scores by round
 def round_scores():
+    """list each player's score by round"""
     print("\nScores By Round")
     print(players)
 
-# tell each player their final score
 def final_scores():
+    """tell each player their final score"""
     for player, score in players.items():
         print(f"\n{player.title()}'s final score is {sum(score)}")
 
-# announce the winner
 def winner():
+    """announce the winner"""
     scores = []
     for player, score in players.items():
         scores.append(sum(score)) 
@@ -69,18 +69,27 @@ game_type = input("single play or ongoing play?  ")
 
 if game_type == 'single play':
 
-    users = people()   
+    #capture the number of players
+    users = people()  
+
+    #capture each player's name 
     player_name()
+
+    #capture each player's scores
     scores()
+
+    #list scores after each round
     round_scores()
+
+    #list final scores
     final_scores()
+
+    #announce the winner
     winner()
 
 if game_type == 'ongoing play':
     groups = {}
     group = input('is this a new group? (y/n) ')
-
-    import json
 
     if group == 'y':
         group_name = input('group name? ')

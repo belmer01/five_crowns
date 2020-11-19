@@ -1,8 +1,9 @@
 ## Functions & variables ##
 
-players = {}
+players = {} 
 rounds = range(3,14)
 users = ""
+champ = ""
 
 # capture number of users
 def people():
@@ -33,8 +34,7 @@ def scores():
 
 # print scores by round
 def round_scores():
-    print()
-    print("Scores By Round")
+    print("\nScores By Round")
     print(players)
 
 # tell each player their final score
@@ -51,20 +51,21 @@ def winner():
     scores.sort()
     score_spread = scores[1] - scores[0]
     
-    winner=min(players, key=lambda p:sum(players[p]))
-   
+    champ=min(players, key=lambda p:sum(players[p]))
+       
     if score_spread == 0:
         print("There is a tie.")
     elif score_spread == 1:
-        print(f"\nThe winner is {winner.title()} by {score_spread} point!")
+        print(f"\nThe winner is {champ.title()} by {score_spread} point!")
     else:
-        print(f"\nThe winner is {winner.title()} by {score_spread} points!")
+        print(f"\nThe winner is {champ.title()} by {score_spread} points!")
 
+    return champ
     print()
 
 
 ## start of executable code ##
-game_type = input("ongoing competition or single play?  ")
+game_type = input("single play or ongoing play?  ")
 
 if game_type == 'single play':
 
@@ -75,20 +76,34 @@ if game_type == 'single play':
     final_scores()
     winner()
 
-if game_type == 'ongoing competition':
-    group = input('new group or existing group? ')
+if game_type == 'ongoing play':
+    groups = {}
+    group = input('is this a new group? (y/n) ')
 
-    if group == 'new group':
-        group_name = input('name the new group')
+    import json
 
-        users = (input("how many players? "))
-        while not users.isdigit():
-            users = (input("how many players? "))
-        users = int(users)
+    if group == 'y':
+        group_name = input('group name? ')
+        group_name = groups
 
-        player_name()
+        users = people()
+
+        for person in range(users):
+            name = input("player's name?  ")
+            players[name] = []
+            group_name[name] = []
+              
         scores()
         round_scores()
         final_scores()
-        winner()
+        champ = winner()
 
+        group_name[champ].append(1)
+
+        with open('groups.json', 'a') as f:
+            json.dump({'group_name'}, f)
+ 
+        for player, score in group_name.items():
+            print(f"\n{player.title()}'s number of wins are {sum(score)}")
+
+        print(group_name)

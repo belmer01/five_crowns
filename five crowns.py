@@ -110,7 +110,7 @@ if game_type == 'ongoing play':
         group_name[champ].append(1)
 
         with open('groups.json', 'a') as f:
-            json.dump({'group_name'}, f)
+            json.dump(group_name, f)
  
         for player, score in group_name.items():
             print(f"\n{player.title()}'s number of wins are {sum(score)}")

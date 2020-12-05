@@ -4,6 +4,8 @@ rounds = range(3,14)
 users = ""
 champ = ""
 import json
+import os.path
+
 
 def people():
     """capture the number of players"""
@@ -93,26 +95,35 @@ if game_type == 'ongoing play':
 
     if group == 'y':
         group_name = input('group name? ')
-        group_name = groups
+        groups[group_name] = {}
 
         users = people()
 
         for person in range(users):
             name = input("player's name?  ")
             players[name] = []
-            group_name[name] = []
-              
+            groups[group_name][name] = []
+
+        print(groups)      
         scores()
         round_scores()
         final_scores()
         champ = winner()
 
-        group_name[champ].append(1)
+        groups[group_name][champ].append(1)
+        stored_groups = []
+        #groups_file = Path("C:\Users\502864\Five Crowns\five_crowns\groups.py")
 
+        # if groups_file.is_file():
         with open('groups.json', 'a') as f:
-            json.dump(group_name, f)
+            json.dump(groups, f)
+        # else:
+        #     with open('groups.json', 'a') as f:
+        #         json.dumps(stored_groups, f)
+        #         json.dumps(groups, f)
+        print(groups)
  
-        for player, score in group_name.items():
+        for player, score in groups[group_name].items():
             print(f"\n{player.title()}'s number of wins are {sum(score)}")
 
-        print(group_name)
+        print()

@@ -115,7 +115,7 @@ if game_type == 'ongoing play':
         #groups_file = Path("C:\Users\502864\Five Crowns\five_crowns\groups.py")
 
         # if groups_file.is_file():
-        with open('groups.json', 'a') as f:
+        with open('C:/Users/502864/Five Crowns/five_crowns/groups.json', 'a') as f:
             json.dump(groups, f)
         # else:
         #     with open('groups.json', 'a') as f:
@@ -127,6 +127,6 @@ if game_type == 'ongoing play':
             print(f"\n{player.title()}'s number of wins are {sum(score)}")
 
         print()
-        with open('groups.json') as f:
+        with open('C:/Users/502864/Five Crowns/five_crowns/groups.json') as f:
             gps = f.read()
             print(gps)

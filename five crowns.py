@@ -127,3 +127,6 @@ if game_type == 'ongoing play':
             print(f"\n{player.title()}'s number of wins are {sum(score)}")
 
         print()
+        with open('groups.json') as f:
+            gps = f.read()
+            print(gps)
